@@ -1,0 +1,5 @@
+hotel managment system
+
+-- make a reservation
+-- display all rooms
+-- display all reservations

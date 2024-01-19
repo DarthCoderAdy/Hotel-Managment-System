@@ -1,0 +1,27 @@
+@startuml
+actor User
+participant Hotel
+participant Room
+participant Reservation
+
+User -> Hotel: MakeReservation(guestName, roomNumber)
+activate Hotel
+Hotel -> Hotel: validateRoom(roomNumber)
+Hotel -> Room: IsOccupied()
+
+activate Room
+Room -> Hotel: occupiedStatus
+deactivate Room
+Hotel -> Reservation: CreateReservation(guestName, roomNumber)
+activate Reservation
+Reservation -> Hotel: reservation
+deactivate Reservation
+Hotel -> Room: SetOccupied(true)
+Hotel -> Hotel: addReservation(reservation)
+activate Room
+Room -> Hotel: updatedRoom
+deactivate Room
+Hotel -> User: "Reservation created successfully. Reservation number: #"
+
+
+@enduml
